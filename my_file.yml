@@ -1,0 +1,12 @@
+---
+
+- one fish
+- two fish
+- red fish
+- blue fish
+- S/N: ABC123
+  ip_addr: 192.168.80.1
+  model: '5550'
+  type: ASA
+  vendor: Cisco
+- 100
