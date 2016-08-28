@@ -1,0 +1,8 @@
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ mkdir SNMP
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ cd SNMP
+(applied_python)[kokumura@ip-172-30-0-5 SNMP]$ python
+Python 2.7.10 (default, Jul 20 2016, 20:53:27)
+[GCC 4.8.3 20140911 (Red Hat 4.8.3-9)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import snmp_helper
+>>> 

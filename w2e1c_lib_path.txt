@@ -1,0 +1,30 @@
+# Running in the same directory as my_func.py.
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ python w2e1c_lib_path.py
+hello
+
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ chmod +x w2e1c_lib_path.py
+
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ ./w2e1c_lib_path.py
+hello
+
+
+# Running with my_func.py in another directory.
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ mkdir subdir
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ mv my_func.py subdir/
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ rm *.pyc
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ ./w2e1c_lib_path.py
+Traceback (most recent call last):
+  File "./w2e1c_lib_path.py", line 3, in <module>
+    import my_func
+ImportError: No module named my_func
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ export PYTHONPATH='/home/kokumura/subdir'
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ ./w2e1c_lib_path.py                 hello
+
+
+# Running with my_func.py in site-packages directory.
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ mv subdir/my_func.py ~/applied_python/lib/python2.7/site-packages/
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ rm -fr subdir/
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ unset PYTHONPATH
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ ./w2e1c_lib_path.py
+hello
+

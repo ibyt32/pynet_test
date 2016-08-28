@@ -1,0 +1,10 @@
+>>> import pysnmp
+>>> import paramiko
+>>> dir(pysnmp)
+['__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__', '__version__', 'majorVersionId', 'version', 'x']
+>>> pysnmp.__version__
+'4.3.2'
+>>> paramiko.__version__
+'2.0.1'
+>>>
+
