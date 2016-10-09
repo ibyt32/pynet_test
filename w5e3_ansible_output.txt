@@ -1,0 +1,25 @@
+TASK [setup] *******************************************************************
+ok: [localhost]
+
+TASK [access_switch : Generate configuration files] ****************************
+changed: [localhost] => (item={u'access_vlan': 10, u'snmp_community': u'<community>', u'default_gateway': u'1.1.1.1', u'hostname': u'pynet-sw1', u'secret': u'<secret>', u'ip_addr': u'1.1.1.2', u'SNMPv3': True})
+changed: [localhost] => (item={u'access_vlan': 20, u'snmp_community': u'<community>', u'default_gateway': u'1.1.2.1', u'hostname': u'pynet-sw2', u'secret': u'<secret>', u'ip_addr': u'1.1.2.2', u'SNMPv3': False})
+changed: [localhost] => (item={u'access_vlan': 30, u'snmp_community': u'<community>', u'default_gateway': u'1.1.3.1', u'hostname': u'pynet-sw3', u'secret': u'<secret>', u'ip_addr': u'1.1.3.2', u'SNMPv3': True})
+changed: [localhost] => (item={u'access_vlan': 40, u'snmp_community': u'<community>', u'default_gateway': u'1.1.4.1', u'hostname': u'pynet-sw4', u'secret': u'<secret>', u'ip_addr': u'1.1.4.2', u'SNMPv3': False})
+changed: [localhost] => (item={u'access_vlan': 50, u'snmp_community': u'<community>', u'default_gateway': u'1.1.5.1', u'hostname': u'pynet-sw5', u'secret': u'<secret>', u'ip_addr': u'1.1.5.2', u'SNMPv3': True})
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0
+
+(applied_python)[kokumura@ip-172-30-0-5 ~]$
+
+(applied_python)[kokumura@ip-172-30-0-5 ~]$ cd ANSIBLE/CFGS/
+(applied_python)[kokumura@ip-172-30-0-5 CFGS]$ ll
+total 20
+-rw-rw-r-- 1 kokumura kokumura 3134 Oct  9 16:28 pynet-sw1.txt
+-rw-rw-r-- 1 kokumura kokumura 2896 Oct  9 16:28 pynet-sw2.txt
+-rw-rw-r-- 1 kokumura kokumura 3134 Oct  9 16:28 pynet-sw3.txt
+-rw-rw-r-- 1 kokumura kokumura 2896 Oct  9 16:28 pynet-sw4.txt
+-rw-rw-r-- 1 kokumura kokumura 3134 Oct  9 16:28 pynet-sw5.txt
+(applied_python)[kokumura@ip-172-30-0-5 CFGS]$
+
