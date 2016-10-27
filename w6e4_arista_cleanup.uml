@@ -1,0 +1,43 @@
+---
+
+#Python for Network Engineers Week 6 Exercise 4
+#Use Ansible to restore your primary Ehternet interface:
+#
+#description:          <none>
+#switchport mode:      access
+#access VLAN:          1
+#trunk allowed VLANs:  all
+
+- name: Arista Cleanup
+  hosts: arista
+
+  tasks:
+    - name: Configure Ethernet4 for Access mode, VLAN1
+      eos_switchport: name=Ethernet4 mode=access access_vlan=1 trunk_allowed_vlans=1-4094 trunk_native_vlan=1
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
+    - name: Reset Ehternet 4 description to default
+      eos_interface: name=Ethernet4 description=""
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
+    - name: Remove VLANs
+      eos_vlan: name={{ item.name }} vlanid={{ item.vlanid }} state=absent
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
+      with_items:
+        - {name: red, vlanid: 100}
+        - {name: white, vlanid: 200}
+        - {name: blue, vlanid: 300}
+

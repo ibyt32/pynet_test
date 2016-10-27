@@ -1,0 +1,29 @@
+---
+
+#Python for Network Engineers Week 6 Exercise 2
+#Use Ansible to configure your primary Ethernet interface:
+#
+#interface description:  *** IN USE ***
+#switchport mode:        access
+#VLAN:                   one created in exercise 1
+
+- name: Configure Arista Ports
+  hosts: arista
+
+  tasks:
+    - name: Setting Ethernet4 description
+      eos_interface: name=Ethernet4 description="*** IN USE ***"
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
+    - name: Set Ethernet4 to access mode, VLAN 200
+      eos_switchport: name=Ethernet4 mode=access access_vlan=200
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
