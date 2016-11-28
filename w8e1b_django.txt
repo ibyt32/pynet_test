@@ -1,0 +1,51 @@
+'''
+Python and Ansible for Network Engineers
+Week 8, Exercise 1b
+
+Update the NetworkDevice objects such that each NetworkDevice links to the
+correct Credentials.
+'''
+
+>>> from net_system.models import NetworkDevice, Credentials
+>>> net_devices = NetworkDevice.objects.all()
+>>> net_devices
+[<NetworkDevice: pynet-rtr1>, <NetworkDevice: pynet-rtr2>, <NetworkDevice: pynet-sw1>, <NetworkDevice: pynet-sw2>, <NetworkDevice: pynet-sw3>, <NetworkDevice: pynet-sw4>, <NetworkDevice: juniper-srx>]
+>>>
+>>> creds = Credentials.objects.all()
+>>> creds
+[<Credentials: pyclass>, <Credentials: admin1>]
+>>>
+>>> std_creds = creds[0]
+>>> std_creds
+<Credentials: pyclass>
+>>>
+>>> arista_creds = creds[1]
+>>> arista_creds
+<Credentials: admin1>
+>>>
+>>> for a_device in net_devices:
+...     if 'pynet-sw' in a_device.device_name:
+...         a_device.credentials = arista_creds
+...     else:
+...         a_device.credentials = std_creds
+...     a_device.save()
+...
+>>>
+>>> for a_device in net_devices:
+...     print a_device, a_device.credentials
+...
+pynet-rtr1 pyclass
+pynet-rtr2 pyclass
+pynet-sw1 admin1
+pynet-sw2 admin1
+pynet-sw3 admin1
+pynet-sw4 admin1
+juniper-srx pyclass
+>>>
+>>>std_creds.networkdevice_set.all()
+[<NetworkDevice: pynet-rtr1>, <NetworkDevice: pynet-rtr2>, <NetworkDevice: juniper-srx>]
+>>>
+>>> arista_creds.networkdevice_set.all()
+[<NetworkDevice: pynet-sw1>, <NetworkDevice: pynet-sw2>, <NetworkDevice: pynet-sw3>, <NetworkDevice: pynet-sw4>]
+>>>
+
